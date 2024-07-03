@@ -1,0 +1,150 @@
+
+* { /*varsayılan margin ve padding değerlerini sıfırladık*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { /*burada bir fontsize belirliyoruz ve diğer yerlerde buna göre 'rem' ile belli oranlarda değer verebiliyoruz.Bunu yapmamızın 
+    nedeni ise fontsize'ı değiştirmek istersek sadece burada değiştirip diğer yerlerde orantısal olarak değişmesini sağlayabiliriz*/
+    font-size: 7px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5; /*satır arası boşluk*/
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    padding: 1.6rem 0;
+}
+
+header {
+    height: 46rem; /*html deki rem'e göre katlanır*/
+}
+
+header .bg-image {
+    background-image: url(images/bg.jpg);
+    background-size: cover; /*konumunu kapsayıcı yaptık*/
+    background-position: center;
+    width: 100%;
+    height: 46rem;
+    opacity: 0.6; /*solgun olmasını sağlayabiliriz*/
+    position: absolute; /*h1'in header kısmında üst tarafta konumlanabilmesi için position'ı absolute yapmalıyız*/ 
+    z-index: -1; /*opacity değeri verdiğimiz zaman görselle birlikte yazı da soluk oluyor.Çünkü yazı görselin arkasında konumlanıyor
+    bunu çözmek için de z-indek:-1 kullandık ve yazı görselin üstüne çıktı*/
+}
+
+header h1 {
+    padding: 12rem;
+    padding-bottom: 0; /*alttan boşluk istemiyoruz*/
+}
+
+.btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #666;
+    padding: 1.6rem 3.2rem;
+    margin: 0.5rem 0;
+    display: inline-block; /*margin değerini üstten ve alttan verebilmemiz için böyle yaptık*/
+    transition: all 0.4s; /*butonun üzerine geldiğimizde yavaş bir değişim olmasını sağlayabiliriz*/
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+#section-a {
+    background-color: #eaeaea;
+    color: #333;
+    padding: 3.2rem 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#section-b {
+    padding: 2rem; /*kenarlardan boşluk oluşturduk.section-b ul'nin tamamını kapsıyor*/
+}
+
+#section-b ul { /*padding verdikten sonra madde işaretlerini gözüktüğü için yok ettik*/
+    list-style: none;
+}
+
+#section-b li {
+    background-color: #fff;
+    color: #333;
+    margin-bottom: 1.5rem; /*li elemanları arası boşluk verir*/
+}
+
+.col-content {
+    padding: 1.5rem;
+}
+
+#section-c {
+    background-color: #eaeaea;
+    color: #333;
+    padding: 5rem;
+}
+
+#section-d .box {
+    padding: 5rem;
+}
+
+#section-d .box:first-child {
+    background-color: darkslategray;
+}
+
+footer {
+    background-color: black;
+    padding: 4rem;
+}
+
+footer a {
+    color: yellowgreen;
+}
+
+@media screen and (min-width:800px) { /*tablet için*/
+
+    html { /*sayfa ögelerini rem cinsinden belirlediğimiz için burayı değiştirdiğimizde rem olanlar bu oranda artar*/
+        font-size: 9px; 
+    }
+}
+
+@media screen and (min-width:1200px) { /*bilgisayar için*/
+    
+    html {
+        font-size: 11px;
+    }
+
+    #section-b li { /*fotoğrafları yan yana getirdik*/
+        width: 28%; /*3 tane olduğu için ve margin ekleyeceğimiz için yaklaşık olarak bu değeri verdik*/
+        display: inline-block;
+        margin: 1%;
+    }
+
+    .box { /*boxları yan yana getirdik*/
+        width: 50%;
+        float: left; /*bu şekilde yan yana geldiklerinde alttaki footer kısmı ile contact us kısmı karıştı ve bir bozulma meydana
+        geldi.Bunu önlemek için section-d içinde bir tane class oluşturuyoruz(clearfix) ve afterında boş bir eleman oluşturup
+        sonra yok olmasını istiyoruz*/
+    }
+
+    .clearfix::after { /*bozulmayı engelledik*/
+        content: "";
+        display: block; /*tüm satırı kapsamalı*/
+        clear: both;
+        /*bu şekilde section-d ve footer bölümlerinin karışmasını önledik*/
+    }
+}
